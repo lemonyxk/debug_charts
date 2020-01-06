@@ -10,9 +10,7 @@
 
 package debug_charts
 
-import "html/template"
-
-var html = template.HTMLEscapeString(`
+var html = `
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -251,4 +249,4 @@ var html = template.HTMLEscapeString(`
 	
 	</script>
 
-`)
+`

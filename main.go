@@ -81,7 +81,7 @@ func init() {
 	})
 
 	httpServerRouter.Group("/debug").Handler(func(handler *lemo.HttpServerRouteHandler) {
-		handler.Get("/charts").Handler(func(stream *lemo.Stream) exception.ErrorFunc {
+		handler.Get("/charts/").Handler(func(stream *lemo.Stream) exception.ErrorFunc {
 			return exception.New(stream.EndString(html))
 		})
 	})
