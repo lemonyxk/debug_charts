@@ -1,4 +1,4 @@
-module debug-charts
+module debug_charts
 
 go 1.14
 
