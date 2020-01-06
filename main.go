@@ -70,8 +70,6 @@ func init() {
 
 	var httpServerRouter = &lemo.HttpServerRouter{IgnoreCase: true}
 
-	httpServerRouter.SetStaticPath("/debug/charts/", "./charts")
-
 	httpServer.Use(func(next lemo.HttpServerMiddle) lemo.HttpServerMiddle {
 		return func(stream *lemo.Stream) {
 			if stream.Request.Header.Get("Upgrade") == "websocket" {
@@ -80,6 +78,12 @@ func init() {
 			}
 			next(stream)
 		}
+	})
+
+	httpServerRouter.Group("/debug").Handler(func(handler *lemo.HttpServerRouteHandler) {
+		handler.Get("/charts").Handler(func(stream *lemo.Stream) exception.ErrorFunc {
+			return exception.New(stream.EndString(html))
+		})
 	})
 
 	go httpServer.SetRouter(httpServerRouter).Start()
