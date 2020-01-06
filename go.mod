@@ -1,4 +1,4 @@
-module debug_charts
+module github.com/Lemo-yxk/debug_charts
 
 go 1.14
 
