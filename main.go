@@ -21,7 +21,6 @@ import (
 	"github.com/Lemo-yxk/lemo"
 	"github.com/Lemo-yxk/lemo/console"
 	"github.com/Lemo-yxk/lemo/exception"
-	"github.com/Lemo-yxk/lemo/utils"
 )
 
 type update struct {
@@ -63,7 +62,7 @@ var (
 	data      dataStorage
 	lastPause uint32
 	interval  time.Duration = time.Millisecond * 500
-	host                    = utils.Addr.GetLocalhostIp()
+	host                    = "0.0.0.0"
 	port                    = 23456
 )
 
