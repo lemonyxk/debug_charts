@@ -107,7 +107,7 @@ func init() {
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
 
-	gatherData(func(u update) {
+	go gatherData(func(u update) {
 		webSocketServer.JsonFormatAll(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, u)})
 	})
 }
