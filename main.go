@@ -62,7 +62,12 @@ const (
 var (
 	data      DataStorage
 	lastPause uint32
+	interval  time.Duration = time.Millisecond * 500
 )
+
+func Interval(t time.Duration) {
+	interval = t
+}
 
 func init() {
 
@@ -109,7 +114,7 @@ func init() {
 
 func gatherData(fn func(u Update)) {
 
-	utils.Time.Ticker(time.Second, func() {
+	utils.Time.Ticker(interval, func() {
 		nowUnix := time.Now().Unix()
 
 		var ms runtime.MemStats
