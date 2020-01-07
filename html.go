@@ -29,10 +29,10 @@ var html = `
 	<script>
 	
 		let globalOption = {
-			animation: { duration: 0 }, // general animation time
-			hover: { animationDuration: 0 }, // duration of animations when hovering an item
+			animation: {duration: 0}, // general animation time
+			hover: {animationDuration: 0}, // duration of animations when hovering an item
 			responsiveAnimationDuration: 0, // animation duration after a resize
-			elements: { point: { pointStyle: "dash" } },
+			elements: {point: {pointStyle: "dash"}},
 			scales: {
 				xAxes: [],
 				yAxes: [
@@ -229,24 +229,32 @@ var html = `
 			CounterChart.update();
 		}
 	
-		let webSocket = new WebSocket("ws://127.0.0.1:23456");
+		function ws() {
+			let webSocket = new WebSocket("ws://127.0.0.1:23456");
 	
-		webSocket.onopen = () => {
-			setInterval(() => {
-				webSocket.send("");
-			}, 3000);
-		};
+			webSocket.onopen = () => {
+				setInterval(() => {
+					webSocket && webSocket.send("");
+				}, 3000);
+			};
 	
-		webSocket.onmessage = msg => {
-			let message = JSON.parse(msg.data);
-			update(message.data.msg);
-		};
+			webSocket.onmessage = msg => {
+				let message = JSON.parse(msg.data);
+				update(message.data.msg);
+			};
 	
-		webSocket.onclose = () => {};
+			webSocket.onclose = () => {
+				webSocket = null;
+				setTimeout(() => {
+					ws();
+				}, 1000)
+			};
 	
-		webSocket.onerror = () => {};
+			webSocket.onerror = () => {};
+		}
 	
-	
+		ws();
+		
 	</script>
 
 `

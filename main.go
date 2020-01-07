@@ -90,9 +90,7 @@ func init() {
 
 	var debugUrl = fmt.Sprintf("http://%s:23456/debug/charts/", utils.Addr.GetLocalhostIp())
 
-	console.Printf("you can open http://%s:23456/debug/charts/ to see.\n", debugUrl)
-
-	_ = utils.System.OpenBrowser(debugUrl)
+	console.Printf("you can open %s to watch.\n", debugUrl)
 
 	var webSocketServer = &lemo.WebSocketServer{Host: "0.0.0.0", Port: 23457, Path: "/", AutoBind: true}
 
