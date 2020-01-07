@@ -29,7 +29,7 @@ var html = `
 	<script>
 	
 		let globalOption = {
-			animation: { duration: 200 }, // general animation time
+			animation: { duration: 0 }, // general animation time
 			hover: { animationDuration: 0 }, // duration of animations when hovering an item
 			responsiveAnimationDuration: 0, // animation duration after a resize
 			elements: { point: { pointStyle: "dash" } },
@@ -150,13 +150,15 @@ var html = `
 		
 		const maxColumn = 3000;
 		
-		function update(info) {
-			// var second = new Date().getSeconds();
+		var sec = 0;
 		
-			// BytesAllocatedChart.data.labels.push(second);
-			// if (BytesAllocatedChart.data.labels.length > maxColumn) {
-			// 	BytesAllocatedChart.data.labels.shift();
-			// }
+		function update(info) {
+			var second = new Date().getSeconds();
+		
+			BytesAllocatedChart.data.labels.push(sec === second ? sec : "");
+			if (BytesAllocatedChart.data.labels.length > maxColumn) {
+				BytesAllocatedChart.data.labels.shift();
+			}
 		
 			BytesAllocatedChart.data.datasets.forEach(dataset => {
 				if (dataset.label.startsWith("BytesAllocated")) {
@@ -170,10 +172,10 @@ var html = `
 			});
 			BytesAllocatedChart.update();
 		
-			// GcPauseChart.data.labels.push(second);
-			// if (GcPauseChart.data.labels.length > maxColumn) {
-			// 	GcPauseChart.data.labels.shift();
-			// }
+			GcPauseChart.data.labels.push(sec === second ? sec : "");
+			if (GcPauseChart.data.labels.length > maxColumn) {
+				GcPauseChart.data.labels.shift();
+			}
 			GcPauseChart.data.datasets.forEach(dataset => {
 				if (dataset.label.startsWith("GcPause")) {
 					var ms = (info.GcPause / 100000).toFixed(8);
@@ -186,10 +188,10 @@ var html = `
 			});
 			GcPauseChart.update();
 		
-			// CounterChart.data.labels.push(second);
-			// if (CounterChart.data.labels.length > maxColumn) {
-			// 	CounterChart.data.labels.shift();
-			// }
+			CounterChart.data.labels.push(sec === second ? sec : "");
+			if (CounterChart.data.labels.length > maxColumn) {
+				CounterChart.data.labels.shift();
+			}
 			CounterChart.data.datasets.forEach(dataset => {
 				// Block
 				if (dataset.label.startsWith("Block")) {
@@ -237,6 +239,10 @@ var html = `
 				}
 			});
 			CounterChart.update();
+		
+			if (sec != second) {
+				sec = second;
+			}
 		}
 		
 		function ws() {
@@ -257,13 +263,14 @@ var html = `
 				webSocket = null;
 				setTimeout(() => {
 					ws();
-				}, 1000)
+				}, 1000);
 			};
 		
 			webSocket.onerror = () => {};
 		}
 		
 		ws();
+
 		
 	</script>
 
