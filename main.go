@@ -63,6 +63,8 @@ var (
 	data      dataStorage
 	lastPause uint32
 	interval  time.Duration = time.Millisecond * 500
+	host                    = utils.Addr.GetLocalhostIp()
+	port                    = 23456
 )
 
 func Interval(t time.Duration) {
@@ -71,14 +73,14 @@ func Interval(t time.Duration) {
 
 func init() {
 
-	var httpServer = &lemo.HttpServer{Host: "0.0.0.0", Port: 23456, AutoBind: true}
+	var httpServer = &lemo.HttpServer{Host: host, Port: port, AutoBind: true}
 
 	var httpServerRouter = &lemo.HttpServerRouter{IgnoreCase: true}
 
 	httpServer.Use(func(next lemo.HttpServerMiddle) lemo.HttpServerMiddle {
 		return func(stream *lemo.Stream) {
 			if stream.Request.Header.Get("Upgrade") == "websocket" {
-				httputil.NewSingleHostReverseProxy(&url.URL{Scheme: "http", Host: "0.0.0.0:23457"}).ServeHTTP(stream.Response, stream.Request)
+				httputil.NewSingleHostReverseProxy(&url.URL{Scheme: "http", Host: fmt.Sprintf("%s:%d", host, port+1)}).ServeHTTP(stream.Response, stream.Request)
 				return
 			}
 			next(stream)
@@ -87,17 +89,17 @@ func init() {
 
 	httpServerRouter.Group("/debug").Handler(func(handler *lemo.HttpServerRouteHandler) {
 		handler.Get("/charts/").Handler(func(stream *lemo.Stream) exception.ErrorFunc {
-			return exception.New(stream.EndString(html))
+			return exception.New(stream.EndString(render()))
 		})
 	})
 
 	go httpServer.SetRouter(httpServerRouter).Start()
 
-	var debugUrl = fmt.Sprintf("http://%s:23456/debug/charts/", utils.Addr.GetLocalhostIp())
+	var debugUrl = fmt.Sprintf("http://%s:%d/debug/charts/", host, port)
 
 	console.Printf("you can open %s to watch.\n", debugUrl)
 
-	var webSocketServer = &lemo.WebSocketServer{Host: "0.0.0.0", Port: 23457, Path: "/", AutoBind: true}
+	var webSocketServer = &lemo.WebSocketServer{Host: host, Port: port + 1, Path: "/", AutoBind: true}
 
 	var webSocketServerRouter = &lemo.WebSocketServerRouter{IgnoreCase: true}
 

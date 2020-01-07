@@ -275,3 +275,7 @@ var html = `
 	</script>
 
 `
+
+func render() string {
+	return html
+}
