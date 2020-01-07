@@ -24,7 +24,7 @@ import (
 	"github.com/Lemo-yxk/lemo/utils"
 )
 
-type Update struct {
+type update struct {
 	Ts             int64
 	BytesAllocated uint64
 	GcPause        uint64
@@ -35,12 +35,12 @@ type Update struct {
 	ThreadCreate   int
 }
 
-type SimplePair struct {
+type simplePair struct {
 	Ts    uint64
 	Value uint64
 }
 
-type PProfPair struct {
+type profPair struct {
 	Ts           uint64
 	Block        int
 	Goroutine    int
@@ -49,10 +49,10 @@ type PProfPair struct {
 	ThreadCreate int
 }
 
-type DataStorage struct {
-	BytesAllocated []SimplePair
-	GcPauses       []SimplePair
-	PProf          []PProfPair
+type dataStorage struct {
+	BytesAllocated []simplePair
+	GcPauses       []simplePair
+	PProf          []profPair
 }
 
 const (
@@ -60,7 +60,7 @@ const (
 )
 
 var (
-	data      DataStorage
+	data      dataStorage
 	lastPause uint32
 	interval  time.Duration = time.Millisecond * 500
 )
@@ -107,60 +107,61 @@ func init() {
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
 
-	gatherData(func(u Update) {
+	gatherData(func(u update) {
 		webSocketServer.JsonFormatAll(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, u)})
 	})
 }
 
-func gatherData(fn func(u Update)) {
+func gatherData(fn func(u update)) {
 
-	utils.Time.Ticker(interval, func() {
-		nowUnix := time.Now().Unix()
+	nowUnix := time.Now().Unix()
 
-		var ms runtime.MemStats
-		runtime.ReadMemStats(&ms)
+	var ms runtime.MemStats
+	runtime.ReadMemStats(&ms)
 
-		u := Update{
-			Ts:           nowUnix * 1000,
-			Block:        pprof.Lookup("block").Count(),
-			Goroutine:    pprof.Lookup("goroutine").Count(),
-			Heap:         pprof.Lookup("heap").Count(),
-			Mutex:        pprof.Lookup("mutex").Count(),
-			ThreadCreate: pprof.Lookup("threadcreate").Count(),
-		}
-		data.PProf = append(data.PProf, PProfPair{
-			uint64(nowUnix) * 1000,
-			u.Block,
-			u.Goroutine,
-			u.Heap,
-			u.Mutex,
-			u.ThreadCreate,
-		})
+	u := update{
+		Ts:           nowUnix * 1000,
+		Block:        pprof.Lookup("block").Count(),
+		Goroutine:    pprof.Lookup("goroutine").Count(),
+		Heap:         pprof.Lookup("heap").Count(),
+		Mutex:        pprof.Lookup("mutex").Count(),
+		ThreadCreate: pprof.Lookup("threadcreate").Count(),
+	}
+	data.PProf = append(data.PProf, profPair{
+		uint64(nowUnix) * 1000,
+		u.Block,
+		u.Goroutine,
+		u.Heap,
+		u.Mutex,
+		u.ThreadCreate,
+	})
 
-		bytesAllocated := ms.Alloc
-		u.BytesAllocated = bytesAllocated
-		data.BytesAllocated = append(data.BytesAllocated, SimplePair{uint64(nowUnix) * 1000, bytesAllocated})
+	bytesAllocated := ms.Alloc
+	u.BytesAllocated = bytesAllocated
+	data.BytesAllocated = append(data.BytesAllocated, simplePair{uint64(nowUnix) * 1000, bytesAllocated})
 
-		if lastPause == 0 || lastPause != ms.NumGC {
-			gcPause := ms.PauseNs[(ms.NumGC+255)%256]
-			u.GcPause = gcPause
-			data.GcPauses = append(data.GcPauses, SimplePair{uint64(nowUnix) * 1000, gcPause})
-			lastPause = ms.NumGC
-		}
+	if lastPause == 0 || lastPause != ms.NumGC {
+		gcPause := ms.PauseNs[(ms.NumGC+255)%256]
+		u.GcPause = gcPause
+		data.GcPauses = append(data.GcPauses, simplePair{uint64(nowUnix) * 1000, gcPause})
+		lastPause = ms.NumGC
+	}
 
-		if len(data.BytesAllocated) > maxCount {
-			data.BytesAllocated = data.BytesAllocated[len(data.BytesAllocated)-maxCount:]
-		}
+	if len(data.BytesAllocated) > maxCount {
+		data.BytesAllocated = data.BytesAllocated[len(data.BytesAllocated)-maxCount:]
+	}
 
-		if len(data.GcPauses) > maxCount {
-			data.GcPauses = data.GcPauses[len(data.GcPauses)-maxCount:]
-		}
+	if len(data.GcPauses) > maxCount {
+		data.GcPauses = data.GcPauses[len(data.GcPauses)-maxCount:]
+	}
 
-		if len(data.PProf) > maxCount {
-			data.PProf = data.PProf[len(data.PProf)-maxCount:]
-		}
+	if len(data.PProf) > maxCount {
+		data.PProf = data.PProf[len(data.PProf)-maxCount:]
+	}
 
-		fn(u)
+	fn(u)
 
-	}).Start()
+	time.Sleep(interval)
+
+	gatherData(fn)
 }
