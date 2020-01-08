@@ -216,7 +216,7 @@ function update(info) {
 }
 
 function ws() {
-    let webSocket = new WebSocket("ws://" + window.location.hostname + ":" +  window.location.port);
+    let webSocket = new WebSocket("ws://" + window.location.hostname + ":" +  window.location.port + "/debug/feed/");
 
     webSocket.onopen = () => {
         setInterval(() => {

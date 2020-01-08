@@ -98,7 +98,7 @@ func init() {
 
 	console.Printf("you can open %s to watch.\n", debugUrl)
 
-	var webSocketServer = &lemo.WebSocketServer{Host: host, Port: port + 1, Path: "/", AutoBind: true}
+	var webSocketServer = &lemo.WebSocketServer{Host: host, Port: port + 1, Path: "/debug/feed/", AutoBind: true}
 
 	var webSocketServerRouter = &lemo.WebSocketServerRouter{IgnoreCase: true}
 
