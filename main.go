@@ -164,5 +164,5 @@ func gatherData(fn func(u update)) {
 
 	time.Sleep(interval)
 
-	gatherData(fn)
+	go gatherData(fn)
 }
