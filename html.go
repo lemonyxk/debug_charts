@@ -246,7 +246,7 @@ var html = `
 		}
 		
 		function ws() {
-			let webSocket = new WebSocket("ws://127.0.0.1:23456");
+			let webSocket = new WebSocket("ws://" + window.location.hostname + ":23456");
 		
 			webSocket.onopen = () => {
 				setInterval(() => {
