@@ -40,8 +40,8 @@ var BytesAllocatedChart = new Chart(document.getElementById("BytesAllocatedChart
         datasets: [
             {
                 label: "BytesAllocated",
-                backgroundColor: "rgb(0, 0, 255)",
-                borderColor: "rgb(0, 0, 255)",
+                backgroundColor: "#c901f1",
+                borderColor: "#c901f1",
                 fill: false,
                 data: []
             }
@@ -60,8 +60,8 @@ var GcPauseChart = new Chart(document.getElementById("GcPause").getContext("2d")
         datasets: [
             {
                 label: "GcPause",
-                backgroundColor: "rgb(0, 99, 132)",
-                borderColor: "rgb(0, 99, 132)",
+                backgroundColor: "#ed1941",
+                borderColor: "#ed1941",
                 fill: false,
                 data: []
             }
@@ -80,36 +80,36 @@ var CounterChart = new Chart(document.getElementById("Counter").getContext("2d")
         datasets: [
             {
                 label: "Goroutine",
-                backgroundColor: "rgb(200, 0, 132)",
-                borderColor: "rgb(200, 0, 132)",
+                backgroundColor: "#53261f",
+                borderColor: "#53261f",
                 fill: false,
                 data: []
             },
             {
                 label: "ThreadCreate",
-                backgroundColor: "rgb(88, 255, 99)",
-                borderColor: "rgb(88, 255, 99)",
+                backgroundColor: "#fdb933",
+                borderColor: "#fdb933",
                 fill: false,
                 data: []
             },
             {
                 label: "Heap",
-                backgroundColor: "rgb(0, 0, 0)",
-                borderColor: "rgb(0, 0, 0)",
+                backgroundColor: "#00a6ac",
+                borderColor: "#00a6ac",
                 fill: false,
                 data: []
             },
             {
                 label: "Mutex",
-                backgroundColor: "rgb(167, 98, 77)",
-                borderColor: "rgb(167, 98, 77)",
+                backgroundColor: "#999d9c",
+                borderColor: "#999d9c",
                 fill: false,
                 data: []
             },
             {
                 label: "Block",
-                backgroundColor: "rgb(255, 0, 132)",
-                borderColor: "rgb(255, 0, 132)",
+                backgroundColor: "#fedcbd",
+                borderColor: "#fedcbd",
                 fill: false,
                 data: []
             }
@@ -229,9 +229,7 @@ function ws() {
         let message = JSON.parse(msg.data);
         message.data.msg = message.data.msg || [];
         for (let i = 0; i < message.data.msg.length; i++) {
-            setTimeout(() => {
-                update(message.data.msg[i]);
-            }, 10 * i)
+            update(message.data.msg[i]);
         }
     };
 
