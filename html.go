@@ -257,9 +257,11 @@ var html = `
 		
 		    webSocket.onmessage = msg => {
 		        let message = JSON.parse(msg.data);
-				message.data.msg = message.data.msg || [];
+		        message.data.msg = message.data.msg || [];
 		        for (let i = 0; i < message.data.msg.length; i++) {
-		            update(message.data.msg[i]);
+		            setTimeout(()=>{
+		                update(message.data.msg[i]);
+		            },10*i)
 		        }
 		    };
 		
