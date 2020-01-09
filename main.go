@@ -35,7 +35,7 @@ type update struct {
 }
 
 const (
-	maxCount int = 3600
+	maxCount int = 600
 )
 
 var (
