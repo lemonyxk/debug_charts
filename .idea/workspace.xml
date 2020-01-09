@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73f2695f-11b5-44f0-8959-33531dff264c" name="Default Changelist" comment="">
+    <list default="true" id="73f2695f-11b5-44f0-8959-33531dff264c" name="Default Changelist" comment="1.change package name.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/charts/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/charts/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html.go" beforeDir="false" afterPath="$PROJECT_DIR$/html.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
@@ -89,6 +90,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1.change package name." />
     <option name="LAST_COMMIT_MESSAGE" value="1.change package name." />
@@ -110,34 +121,38 @@
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
     <state x="945" y="283" key="#go_build_debug-charts/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578400524539" />
-    <state x="804" y="234" key="CommitChangelistDialog2" timestamp="1578456914649">
+    <state x="804" y="234" key="CommitChangelistDialog2" timestamp="1578543706438">
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
-    <state x="804" y="234" key="CommitChangelistDialog2/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578456914649" />
-    <state width="2191" height="380" key="GridCell.Tab.0.bottom" timestamp="1578456927680">
+    <state x="804" y="234" key="CommitChangelistDialog2/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578543706438" />
+    <state x="256" y="147" width="2048" height="1076" key="DiffContextDialog" timestamp="1578545256223">
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
-    <state width="2191" height="380" key="GridCell.Tab.0.bottom/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578456927680" />
-    <state width="2191" height="380" key="GridCell.Tab.0.center" timestamp="1578456927676">
+    <state x="256" y="147" width="2048" height="1076" key="DiffContextDialog/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578545256223" />
+    <state width="2191" height="380" key="GridCell.Tab.0.bottom" timestamp="1578545288852">
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
-    <state width="2191" height="380" key="GridCell.Tab.0.center/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578456927676" />
-    <state width="2191" height="380" key="GridCell.Tab.0.left" timestamp="1578456927673">
+    <state width="2191" height="380" key="GridCell.Tab.0.bottom/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578545288852" />
+    <state width="2191" height="380" key="GridCell.Tab.0.center" timestamp="1578545288845">
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
-    <state width="2191" height="380" key="GridCell.Tab.0.left/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578456927673" />
-    <state width="2191" height="380" key="GridCell.Tab.0.right" timestamp="1578456927679">
+    <state width="2191" height="380" key="GridCell.Tab.0.center/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578545288845" />
+    <state width="2191" height="380" key="GridCell.Tab.0.left" timestamp="1578545288844">
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
-    <state width="2191" height="380" key="GridCell.Tab.0.right/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578456927679" />
+    <state width="2191" height="380" key="GridCell.Tab.0.left/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578545288844" />
+    <state width="2191" height="380" key="GridCell.Tab.0.right" timestamp="1578545288851">
+      <screen x="0" y="23" width="2560" height="1346" />
+    </state>
+    <state width="2191" height="380" key="GridCell.Tab.0.right/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578545288851" />
     <state x="673" y="247" key="SettingsEditor" timestamp="1578455591238">
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
     <state x="673" y="247" key="SettingsEditor/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578455591238" />
-    <state x="780" y="375" key="Vcs.Push.Dialog.v2" timestamp="1578456916423">
+    <state x="780" y="375" key="Vcs.Push.Dialog.v2" timestamp="1578457138341">
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
-    <state x="780" y="375" key="Vcs.Push.Dialog.v2/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578456916423" />
+    <state x="780" y="375" key="Vcs.Push.Dialog.v2/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578457138341" />
     <state x="888" y="423" width="784" height="546" key="find.popup" timestamp="1578319316825">
       <screen x="0" y="23" width="2560" height="1346" />
     </state>

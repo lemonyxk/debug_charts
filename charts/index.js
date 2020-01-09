@@ -118,7 +118,7 @@ var CounterChart = new Chart(document.getElementById("Counter").getContext("2d")
     options: globalOption
 });
 
-const maxColumn = 3000;
+const maxColumn = 3600;
 
 var sec = 0;
 
@@ -148,7 +148,7 @@ function update(info) {
     }
     GcPauseChart.data.datasets.forEach(dataset => {
         if (dataset.label.startsWith("GcPause")) {
-            var ms = (info.GcPause / 100000).toFixed(8);
+            var ms = (info.GcPause / 1e6).toFixed(8);
             dataset.label = "GcPause: " + ms + " MS";
             dataset.data.push(ms);
             if (dataset.data.length > maxColumn) {
@@ -216,9 +216,10 @@ function update(info) {
 }
 
 function ws() {
-    let webSocket = new WebSocket("ws://" + window.location.hostname + ":" +  window.location.port + "/debug/feed/");
+    let webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/debug/feed/");
 
     webSocket.onopen = () => {
+        webSocket.send(JSON.stringify({"event": "/debug/login"}))
         setInterval(() => {
             webSocket && webSocket.send("");
         }, 3000);
@@ -226,7 +227,10 @@ function ws() {
 
     webSocket.onmessage = msg => {
         let message = JSON.parse(msg.data);
-        update(message.data.msg);
+        message.data.msg = message.data.msg || [];
+        for (let i = 0; i < message.data.msg.length; i++) {
+            update(message.data.msg[i]);
+        }
     };
 
     webSocket.onclose = () => {

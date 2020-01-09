@@ -34,36 +34,18 @@ type update struct {
 	ThreadCreate   int
 }
 
-type simplePair struct {
-	Ts    uint64
-	Value uint64
-}
-
-type profPair struct {
-	Ts           uint64
-	Block        int
-	Goroutine    int
-	Heap         int
-	Mutex        int
-	ThreadCreate int
-}
-
-type dataStorage struct {
-	BytesAllocated []simplePair
-	GcPauses       []simplePair
-	PProf          []profPair
-}
-
 const (
-	maxCount int = 600
+	maxCount int = 3600
 )
 
 var (
-	data      dataStorage
-	lastPause uint32
-	interval  time.Duration = time.Millisecond * 500
-	host                    = "0.0.0.0"
-	port                    = 23456
+	data            []update
+	lastPause       uint32
+	interval        = time.Millisecond * 500
+	host            = "0.0.0.0"
+	port            = 23456
+	httpServer      = &lemo.HttpServer{Host: host, Port: port, AutoBind: true}
+	webSocketServer = &lemo.WebSocketServer{Host: host, Port: port + 1, Path: "/debug/feed/", AutoBind: true}
 )
 
 func Interval(t time.Duration) {
@@ -71,8 +53,6 @@ func Interval(t time.Duration) {
 }
 
 func init() {
-
-	var httpServer = &lemo.HttpServer{Host: host, Port: port, AutoBind: true}
 
 	var httpServerRouter = &lemo.HttpServerRouter{IgnoreCase: true}
 
@@ -98,9 +78,13 @@ func init() {
 
 	console.Printf("you can open %s to watch.\n", debugUrl)
 
-	var webSocketServer = &lemo.WebSocketServer{Host: host, Port: port + 1, Path: "/debug/feed/", AutoBind: true}
-
 	var webSocketServerRouter = &lemo.WebSocketServerRouter{IgnoreCase: true}
+
+	webSocketServerRouter.Group("/debug").Handler(func(handler *lemo.WebSocketServerRouteHandler) {
+		handler.Route("/login").Handler(func(conn *lemo.WebSocket, receive *lemo.Receive) exception.ErrorFunc {
+			return conn.JsonFormat(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, data)})
+		})
+	})
 
 	webSocketServer.OnOpen = func(conn *lemo.WebSocket) {}
 	webSocketServer.OnClose = func(fd uint32) {}
@@ -108,12 +92,11 @@ func init() {
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
 
-	go gatherData(func(u update) {
-		webSocketServer.JsonFormatAll(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, u)})
-	})
+	go gatherData()
+
 }
 
-func gatherData(fn func(u update)) {
+func gatherData() {
 
 	nowUnix := time.Now().Unix()
 
@@ -128,41 +111,24 @@ func gatherData(fn func(u update)) {
 		Mutex:        pprof.Lookup("mutex").Count(),
 		ThreadCreate: pprof.Lookup("threadcreate").Count(),
 	}
-	data.PProf = append(data.PProf, profPair{
-		uint64(nowUnix) * 1000,
-		u.Block,
-		u.Goroutine,
-		u.Heap,
-		u.Mutex,
-		u.ThreadCreate,
-	})
 
-	bytesAllocated := ms.Alloc
-	u.BytesAllocated = bytesAllocated
-	data.BytesAllocated = append(data.BytesAllocated, simplePair{uint64(nowUnix) * 1000, bytesAllocated})
+	u.BytesAllocated = ms.Alloc
 
 	if lastPause == 0 || lastPause != ms.NumGC {
 		gcPause := ms.PauseNs[(ms.NumGC+255)%256]
 		u.GcPause = gcPause
-		data.GcPauses = append(data.GcPauses, simplePair{uint64(nowUnix) * 1000, gcPause})
 		lastPause = ms.NumGC
 	}
 
-	if len(data.BytesAllocated) > maxCount {
-		data.BytesAllocated = data.BytesAllocated[len(data.BytesAllocated)-maxCount:]
-	}
+	data = append(data, u)
 
-	if len(data.GcPauses) > maxCount {
-		data.GcPauses = data.GcPauses[len(data.GcPauses)-maxCount:]
+	if len(data) > maxCount {
+		data = data[len(data)-maxCount:]
 	}
-
-	if len(data.PProf) > maxCount {
-		data.PProf = data.PProf[len(data.PProf)-maxCount:]
-	}
-
-	fn(u)
 
 	time.Sleep(interval)
 
-	go gatherData(fn)
+	webSocketServer.JsonFormatAll(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, []update{u})})
+
+	go gatherData()
 }

@@ -20,6 +20,7 @@ import (
 )
 
 func main() {
+
 	utils.Signal.ListenKill().Done(func(sig os.Signal) {
 		console.Log(sig)
 	})
