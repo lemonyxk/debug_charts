@@ -4,6 +4,8 @@ github.com/Lemo-yxk/lemo v0.0.0-20200107111957-adcb6539c720 h1:cXqGQWLZ00bM31sVB
 github.com/Lemo-yxk/lemo v0.0.0-20200107111957-adcb6539c720/go.mod h1:9fxO9G24TDGn9dE+A7DbLpwTPKyz8blwSBaxYbOUpvg=
 github.com/Lemo-yxk/lemo v0.0.0-20200108035717-403a1a45fe79 h1:Dcbf/+3g6gs2Xpjz+uCNiCJOcnroOEEmEx71BJ0Yk9Y=
 github.com/Lemo-yxk/lemo v0.0.0-20200108035717-403a1a45fe79/go.mod h1:9fxO9G24TDGn9dE+A7DbLpwTPKyz8blwSBaxYbOUpvg=
+github.com/Lemo-yxk/lemo v0.0.0-20200113035047-8d47ddf6c7c6 h1:ROn0hmW17ZFvo/mWvFTRWkUkuZjcShTty1Mq84xOHdw=
+github.com/Lemo-yxk/lemo v0.0.0-20200113035047-8d47ddf6c7c6/go.mod h1:9fxO9G24TDGn9dE+A7DbLpwTPKyz8blwSBaxYbOUpvg=
 github.com/StackExchange/wmi v0.0.0-20190523213315-cbe66965904d/go.mod h1:3eOhrUMpNV+6aFIbp5/iudMxNCF27Vw2OZgy4xEx0Fg=
 github.com/asaskevich/govalidator v0.0.0-20190424111038-f61b66f89f4a h1:idn718Q4B6AGu/h5Sxe66HYVdqdGu2l9Iebqhi/AEoA=
 github.com/asaskevich/govalidator v0.0.0-20190424111038-f61b66f89f4a/go.mod h1:lB+ZfQJz7igIIfQNfa7Ml4HSf2uFQQRzpGGRXenZAgY=

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="73f2695f-11b5-44f0-8959-33531dff264c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,9 +120,10 @@
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
     <state x="945" y="283" key="#go_build_debug-charts/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578400524539" />
-    <state x="804" y="234" key="CommitChangelistDialog2" timestamp="1578553768833">
-      <screen x="0" y="23" width="2560" height="1346" />
+    <state x="804" y="234" key="CommitChangelistDialog2" timestamp="1578899972510">
+      <screen x="0" y="23" width="2560" height="1345" />
     </state>
+    <state x="804" y="234" key="CommitChangelistDialog2/2560.81.1920.1057/0.23.2560.1345@0.23.2560.1345" timestamp="1578899972510" />
     <state x="804" y="234" key="CommitChangelistDialog2/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578553768833" />
     <state x="256" y="147" width="2048" height="1076" key="DiffContextDialog" timestamp="1578545256223">
       <screen x="0" y="23" width="2560" height="1346" />
@@ -146,9 +149,10 @@
       <screen x="0" y="23" width="2560" height="1346" />
     </state>
     <state x="673" y="247" key="SettingsEditor/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578455591238" />
-    <state x="780" y="375" key="Vcs.Push.Dialog.v2" timestamp="1578553770507">
-      <screen x="0" y="23" width="2560" height="1346" />
+    <state x="780" y="375" key="Vcs.Push.Dialog.v2" timestamp="1578899974112">
+      <screen x="0" y="23" width="2560" height="1345" />
     </state>
+    <state x="780" y="375" key="Vcs.Push.Dialog.v2/2560.81.1920.1057/0.23.2560.1345@0.23.2560.1345" timestamp="1578899974112" />
     <state x="780" y="375" key="Vcs.Push.Dialog.v2/2560.81.1920.1057/0.23.2560.1346@0.23.2560.1346" timestamp="1578553770507" />
     <state x="888" y="423" width="784" height="546" key="find.popup" timestamp="1578319316825">
       <screen x="0" y="23" width="2560" height="1346" />

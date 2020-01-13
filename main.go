@@ -138,5 +138,5 @@ func gatherData() {
 		}
 
 		webSocketServer.JsonFormatAll(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, []update{u})})
-	})
+	}).Start()
 }
