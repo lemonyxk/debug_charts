@@ -216,7 +216,12 @@ function update(info) {
 }
 
 function ws() {
-    let webSocket = new WebSocket("ws://" + window.location.hostname + ":" + window.location.port + "/debug/feed/");
+
+    let protocol = 'ws';
+
+    if (window.location.protocol === 'http') protocol = 'wss';
+
+    let webSocket = new WebSocket(protocol + "://" + window.location.hostname + ":" + window.location.port + "/debug/feed/");
 
     webSocket.onopen = () => {
         webSocket.send(JSON.stringify({"event": "/debug/login"}))
