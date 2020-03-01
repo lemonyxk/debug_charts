@@ -219,7 +219,7 @@ function ws() {
 
     let protocol = 'ws';
 
-    if (window.location.protocol === 'http') protocol = 'wss';
+    if (window.location.protocol === 'https:') protocol = 'wss';
 
     let webSocket = new WebSocket(protocol + "://" + window.location.hostname + ":" + window.location.port + "/debug/feed/");
 
