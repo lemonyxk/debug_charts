@@ -97,7 +97,7 @@ func Start() {
 	})
 
 	webSocketServer.OnOpen = func(conn *lemo.WebSocket) {}
-	webSocketServer.OnClose = func(fd uint32) {}
+	webSocketServer.OnClose = func(conn *lemo.WebSocket) {}
 	webSocketServer.OnError = func(err exception.ErrorFunc) {}
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
