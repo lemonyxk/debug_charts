@@ -77,7 +77,7 @@ func Start() {
 	})
 
 	httpServerRouter.Group("/debug").Handler(func(handler *lemo.HttpServerRouteHandler) {
-		handler.Get("/charts/").Handler(func(stream *lemo.Stream) exception.ErrorFunc {
+		handler.Get("/charts/").Handler(func(stream *lemo.Stream) exception.Error {
 			return exception.New(stream.EndString(render()))
 		})
 	})
@@ -91,14 +91,14 @@ func Start() {
 	var webSocketServerRouter = &lemo.WebSocketServerRouter{IgnoreCase: true}
 
 	webSocketServerRouter.Group("/debug").Handler(func(handler *lemo.WebSocketServerRouteHandler) {
-		handler.Route("/login").Handler(func(conn *lemo.WebSocket, receive *lemo.Receive) exception.ErrorFunc {
+		handler.Route("/login").Handler(func(conn *lemo.WebSocket, receive *lemo.Receive) exception.Error {
 			return conn.JsonFormat(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, data)})
 		})
 	})
 
 	webSocketServer.OnOpen = func(conn *lemo.WebSocket) {}
 	webSocketServer.OnClose = func(conn *lemo.WebSocket) {}
-	webSocketServer.OnError = func(err exception.ErrorFunc) {}
+	webSocketServer.OnError = func(err exception.Error) {}
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
 
