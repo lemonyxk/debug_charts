@@ -1,5 +1,5 @@
-github.com/Lemo-yxk/lemo v0.0.0-20200506182115-6cd0d1cd9cee h1:tMR6A8bvsfgcU86NDHpQ3ggLNFYy0kAgM9OH97ZWous=
-github.com/Lemo-yxk/lemo v0.0.0-20200506182115-6cd0d1cd9cee/go.mod h1:l2YVndpX4TA01g9YbbGkuEaUJvKcsuCuyoW2mzSx070=
+github.com/Lemo-yxk/lemo v1.0.0 h1:kQ8fyULNDq1Lhe9+h9JpNLygDCXp/LhyIbJQZqgTcwg=
+github.com/Lemo-yxk/lemo v1.0.0/go.mod h1:l2YVndpX4TA01g9YbbGkuEaUJvKcsuCuyoW2mzSx070=
 github.com/asaskevich/govalidator v0.0.0-20190424111038-f61b66f89f4a h1:idn718Q4B6AGu/h5Sxe66HYVdqdGu2l9Iebqhi/AEoA=
 github.com/asaskevich/govalidator v0.0.0-20190424111038-f61b66f89f4a/go.mod h1:lB+ZfQJz7igIIfQNfa7Ml4HSf2uFQQRzpGGRXenZAgY=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
