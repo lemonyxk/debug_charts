@@ -21,7 +21,10 @@ import (
 	"github.com/Lemo-yxk/lemo"
 	"github.com/Lemo-yxk/lemo/console"
 	"github.com/Lemo-yxk/lemo/exception"
+	"github.com/Lemo-yxk/lemo/http"
+	"github.com/Lemo-yxk/lemo/http/server"
 	"github.com/Lemo-yxk/lemo/utils"
+	server2 "github.com/Lemo-yxk/lemo/websocket/server"
 )
 
 type update struct {
@@ -41,8 +44,8 @@ var (
 	interval        = time.Millisecond * 500
 	host            = "0.0.0.0"
 	port            = 23456
-	httpServer      = &lemo.HttpServer{Host: host, Port: port, AutoBind: true}
-	webSocketServer = &lemo.WebSocketServer{Host: host, Port: port + 1, Path: "/debug/feed/", AutoBind: true}
+	httpServer      = &server.Server{Host: host, Port: port, AutoBind: true}
+	webSocketServer = &server2.Server{Host: host, Port: port + 1, Path: "/debug/feed/", AutoBind: true}
 	lastPause       uint32
 )
 
@@ -64,10 +67,10 @@ func MaxCount(n int) {
 
 func Start() {
 
-	var httpServerRouter = &lemo.HttpServerRouter{IgnoreCase: true}
+	var httpServerRouter = &server.Router{IgnoreCase: true}
 
-	httpServer.Use(func(next lemo.HttpServerMiddle) lemo.HttpServerMiddle {
-		return func(stream *lemo.Stream) {
+	httpServer.Use(func(next server.Middle) server.Middle {
+		return func(stream *http.Stream) {
 			if stream.Request.Header.Get("Upgrade") == "websocket" {
 				httputil.NewSingleHostReverseProxy(&url.URL{Scheme: "http", Host: fmt.Sprintf("%s:%d", host, port+1)}).ServeHTTP(stream.Response, stream.Request)
 				return
@@ -76,8 +79,8 @@ func Start() {
 		}
 	})
 
-	httpServerRouter.Group("/debug").Handler(func(handler *lemo.HttpServerRouteHandler) {
-		handler.Get("/charts/").Handler(func(stream *lemo.Stream) exception.Error {
+	httpServerRouter.Group("/debug").Handler(func(handler *server.RouteHandler) {
+		handler.Get("/charts/").Handler(func(stream *http.Stream) exception.Error {
 			return exception.New(stream.EndString(render()))
 		})
 	})
@@ -88,16 +91,16 @@ func Start() {
 
 	console.Printf("you can open %s to watch.\n", debugUrl)
 
-	var webSocketServerRouter = &lemo.WebSocketServerRouter{IgnoreCase: true}
+	var webSocketServerRouter = &server2.Router{IgnoreCase: true}
 
-	webSocketServerRouter.Group("/debug").Handler(func(handler *lemo.WebSocketServerRouteHandler) {
-		handler.Route("/login").Handler(func(conn *lemo.WebSocket, receive *lemo.Receive) exception.Error {
-			return conn.JsonFormat(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, data)})
+	webSocketServerRouter.Group("/debug").Handler(func(handler *server2.RouteHandler) {
+		handler.Route("/login").Handler(func(conn *server2.WebSocket, receive *lemo.Receive) exception.Error {
+			return conn.Json(lemo.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data}})
 		})
 	})
 
-	webSocketServer.OnOpen = func(conn *lemo.WebSocket) {}
-	webSocketServer.OnClose = func(conn *lemo.WebSocket) {}
+	webSocketServer.OnOpen = func(conn *server2.WebSocket) {}
+	webSocketServer.OnClose = func(conn *server2.WebSocket) {}
 	webSocketServer.OnError = func(err exception.Error) {}
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
@@ -137,6 +140,6 @@ func gatherData() {
 			data = data[len(data)-maxCount:]
 		}
 
-		webSocketServer.JsonFormatAll(lemo.JsonPackage{Event: "listen", Message: lemo.JM("SUCCESS", 200, []update{u})})
+		webSocketServer.JsonAll(lemo.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}}})
 	}).Start()
 }
