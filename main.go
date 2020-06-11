@@ -42,10 +42,10 @@ var (
 	maxCount        = 600
 	data            []update
 	interval        = time.Millisecond * 500
-	host            = "0.0.0.0"
+	ip              = "0.0.0.0"
 	port            = 23456
-	httpServer      = &server.Server{Host: host, Port: port, AutoBind: true}
-	webSocketServer = &server2.Server{Host: host, Port: port + 1, Path: "/debug/feed/", AutoBind: true}
+	httpServer      = &server.Server{IP: ip, Port: port, AutoBind: true}
+	webSocketServer = &server2.Server{IP: ip, Port: port + 1, Path: "/debug/feed/", AutoBind: true}
 	lastPause       uint32
 )
 
@@ -57,8 +57,8 @@ func Port(p int) {
 	port = p
 }
 
-func Host(h string) {
-	host = h
+func Ip(h string) {
+	ip = h
 }
 
 func MaxCount(n int) {
@@ -72,7 +72,7 @@ func Start() {
 	httpServer.Use(func(next server.Middle) server.Middle {
 		return func(stream *http.Stream) {
 			if stream.Request.Header.Get("Upgrade") == "websocket" {
-				httputil.NewSingleHostReverseProxy(&url.URL{Scheme: "http", Host: fmt.Sprintf("%s:%d", host, port+1)}).ServeHTTP(stream.Response, stream.Request)
+				httputil.NewSingleHostReverseProxy(&url.URL{Scheme: "http", Host: fmt.Sprintf("%s:%d", ip, port+1)}).ServeHTTP(stream.Response, stream.Request)
 				return
 			}
 			next(stream)
@@ -87,7 +87,7 @@ func Start() {
 
 	go httpServer.SetRouter(httpServerRouter).Start()
 
-	var debugUrl = fmt.Sprintf("http://%s:%d/debug/charts/", host, port)
+	var debugUrl = fmt.Sprintf("http://%s:%d/debug/charts/", ip, port)
 
 	console.Printf("you can open %s to watch.\n", debugUrl)
 
