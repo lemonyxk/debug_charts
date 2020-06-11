@@ -44,8 +44,8 @@ var (
 	interval        = time.Millisecond * 500
 	ip              = "0.0.0.0"
 	port            = 23456
-	httpServer      = &server.Server{IP: ip, Port: port, AutoBind: true}
-	webSocketServer = &server2.Server{IP: ip, Port: port + 1, Path: "/debug/feed/", AutoBind: true}
+	httpServer      = &server.Server{IP: ip, Port: port}
+	webSocketServer = &server2.Server{IP: ip, Port: port + 1, Path: "/debug/feed/"}
 	lastPause       uint32
 )
 
