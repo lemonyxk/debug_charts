@@ -18,13 +18,10 @@ import (
 	"runtime/pprof"
 	"time"
 
-	"github.com/Lemo-yxk/lemo"
-	"github.com/Lemo-yxk/lemo/console"
-	"github.com/Lemo-yxk/lemo/exception"
-	"github.com/Lemo-yxk/lemo/http"
-	"github.com/Lemo-yxk/lemo/http/server"
-	"github.com/Lemo-yxk/lemo/utils"
-	server2 "github.com/Lemo-yxk/lemo/websocket/server"
+	"github.com/lemoyxk/kitty"
+	"github.com/lemoyxk/kitty/http"
+	"github.com/lemoyxk/kitty/http/server"
+	server2 "github.com/lemoyxk/kitty/websocket/server"
 )
 
 type update struct {
@@ -80,8 +77,8 @@ func Start() {
 	})
 
 	httpServerRouter.Group("/debug").Handler(func(handler *server.RouteHandler) {
-		handler.Get("/charts/").Handler(func(stream *http.Stream) exception.Error {
-			return exception.New(stream.EndString(render()))
+		handler.Get("/charts/").Handler(func(stream *http.Stream) error {
+			return stream.EndString(render())
 		})
 	})
 
@@ -89,19 +86,19 @@ func Start() {
 
 	var debugUrl = fmt.Sprintf("http://%s:%d/debug/charts/", ip, port)
 
-	console.Printf("you can open %s to watch.\n", debugUrl)
+	fmt.Printf("you can open %s to watch.\n", debugUrl)
 
 	var webSocketServerRouter = &server2.Router{IgnoreCase: true}
 
 	webSocketServerRouter.Group("/debug").Handler(func(handler *server2.RouteHandler) {
-		handler.Route("/login").Handler(func(conn *server2.WebSocket, receive *lemo.Receive) exception.Error {
-			return conn.Json(lemo.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data}})
+		handler.Route("/login").Handler(func(conn *server2.WebSocket, receive *kitty.Receive) error {
+			return conn.Json(kitty.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data}})
 		})
 	})
 
 	webSocketServer.OnOpen = func(conn *server2.WebSocket) {}
 	webSocketServer.OnClose = func(conn *server2.WebSocket) {}
-	webSocketServer.OnError = func(err exception.Error) {}
+	webSocketServer.OnError = func(err error) {}
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
 
@@ -110,8 +107,10 @@ func Start() {
 }
 
 func gatherData() {
-	utils.Time.Ticker(interval, func() {
 
+	var ticker = time.NewTicker(interval)
+
+	for range ticker.C {
 		nowUnix := time.Now().Unix()
 
 		var ms runtime.MemStats
@@ -140,6 +139,6 @@ func gatherData() {
 			data = data[len(data)-maxCount:]
 		}
 
-		webSocketServer.JsonAll(lemo.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}}})
-	}).Start()
+		webSocketServer.JsonAll(kitty.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}}})
+	}
 }

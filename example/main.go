@@ -11,17 +11,9 @@
 package main
 
 import (
-	"os"
-
-	"github.com/Lemo-yxk/lemo/console"
-	"github.com/Lemo-yxk/lemo/utils"
-
-	_ "github.com/Lemo-yxk/debug_charts"
+	_ "github.com/lemoyxk/debug_charts"
 )
 
 func main() {
 
-	utils.Signal.ListenKill().Done(func(sig os.Signal) {
-		console.Info(sig)
-	})
 }
