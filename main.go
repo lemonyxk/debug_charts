@@ -18,10 +18,10 @@ import (
 	"runtime/pprof"
 	"time"
 
-	"github.com/lemoyxk/kitty"
 	"github.com/lemoyxk/kitty/http"
 	"github.com/lemoyxk/kitty/http/server"
-	server2 "github.com/lemoyxk/kitty/websocket/server"
+	"github.com/lemoyxk/kitty/socket"
+	server2 "github.com/lemoyxk/kitty/socket/websocket/server"
 )
 
 type update struct {
@@ -91,13 +91,13 @@ func Start() {
 	var webSocketServerRouter = &server2.Router{IgnoreCase: true}
 
 	webSocketServerRouter.Group("/debug").Handler(func(handler *server2.RouteHandler) {
-		handler.Route("/login").Handler(func(conn *server2.WebSocket, receive *kitty.Receive) error {
-			return conn.Json(kitty.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data}})
+		handler.Route("/login").Handler(func(conn *server2.Conn, stream *socket.Stream) error {
+			return conn.Json(socket.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data}})
 		})
 	})
 
-	webSocketServer.OnOpen = func(conn *server2.WebSocket) {}
-	webSocketServer.OnClose = func(conn *server2.WebSocket) {}
+	webSocketServer.OnOpen = func(conn *server2.Conn) {}
+	webSocketServer.OnClose = func(conn *server2.Conn) {}
 	webSocketServer.OnError = func(err error) {}
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
@@ -139,6 +139,6 @@ func gatherData() {
 			data = data[len(data)-maxCount:]
 		}
 
-		webSocketServer.JsonAll(kitty.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}}})
+		webSocketServer.JsonAll(socket.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}}})
 	}
 }
