@@ -92,7 +92,7 @@ func Start() {
 
 	webSocketServerRouter.Group("/debug").Handler(func(handler *server2.RouteHandler) {
 		handler.Route("/login").Handler(func(conn *server2.Conn, stream *socket.Stream) error {
-			return conn.Json(socket.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data}})
+			return conn.JsonEmit(socket.JsonPack{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data}})
 		})
 	})
 
@@ -139,6 +139,6 @@ func gatherData() {
 			data = data[len(data)-maxCount:]
 		}
 
-		webSocketServer.JsonAll(socket.JsonPackage{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}}})
+		webSocketServer.JsonEmitAll(socket.JsonPack{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}}})
 	}
 }

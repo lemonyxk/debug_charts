@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73f2695f-11b5-44f0-8959-33531dff264c" name="Default Changelist" comment="">
+    <list default="true" id="73f2695f-11b5-44f0-8959-33531dff264c" name="Default Changelist" comment="1.update package.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +22,7 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/Cellar/go/1.15.2/libexec" />
+  <component name="GOROOT" url="file:///usr/local/Cellar/go/1.16.3/libexec" />
   <component name="Git.Settings">
     <option name="PUSH_TAGS">
       <GitPushTagMode>
@@ -40,7 +41,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
-    <property name="GO_FMT" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -61,27 +61,27 @@
       <module name="debug-charts" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
       <package value="debug-charts" />
       <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build github.com/Lemo-yxk/debug_charts/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="debug-charts" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/example/main.go" />
       <package value="github.com/Lemo-yxk/debug_charts/example" />
       <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/example/main.go" />
       <method v="2" />
     </configuration>
     <configuration name="go build github.com/lemoyxk/debug_charts/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="debug-charts" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/example/main.go" />
       <package value="github.com/lemoyxk/debug_charts/example" />
       <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/example/main.go" />
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -122,47 +122,5 @@
       </map>
     </environment>
     <proxy>direct</proxy>
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="589" y="334" key="#GOROOT" timestamp="1600402406679">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state x="589" y="334" key="#GOROOT/0.23.1680.978@0.23.1680.978" timestamp="1600402406679" />
-    <state x="414" y="85" key="CommitChangelistDialog2" timestamp="1597996346027">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state x="414" y="85" key="CommitChangelistDialog2/0.23.1680.978@0.23.1680.978" timestamp="1597996346027" />
-    <state x="722" y="378" key="EnvironmentVariablesDialog" timestamp="1593243267721">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state x="722" y="378" key="EnvironmentVariablesDialog/0.23.1680.978@0.23.1680.978" timestamp="1593243267721" />
-    <state width="1329" height="268" key="GridCell.Tab.0.bottom" timestamp="1597996357539">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state width="1329" height="268" key="GridCell.Tab.0.bottom/0.23.1680.978@0.23.1680.978" timestamp="1597996357539" />
-    <state width="1329" height="268" key="GridCell.Tab.0.center" timestamp="1597996357539">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state width="1329" height="268" key="GridCell.Tab.0.center/0.23.1680.978@0.23.1680.978" timestamp="1597996357539" />
-    <state width="1329" height="268" key="GridCell.Tab.0.left" timestamp="1597996357539">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state width="1329" height="268" key="GridCell.Tab.0.left/0.23.1680.978@0.23.1680.978" timestamp="1597996357539" />
-    <state width="1329" height="268" key="GridCell.Tab.0.right" timestamp="1597996357539">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state width="1329" height="268" key="GridCell.Tab.0.right/0.23.1680.978@0.23.1680.978" timestamp="1597996357539" />
-    <state x="371" y="151" key="SettingsEditor" timestamp="1593243270379">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state x="371" y="151" key="SettingsEditor/0.23.1680.978@0.23.1680.978" timestamp="1593243270379" />
-    <state x="512" y="278" key="Vcs.Push.Dialog.v2" timestamp="1597996347453">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state x="512" y="278" key="Vcs.Push.Dialog.v2/0.23.1680.978@0.23.1680.978" timestamp="1597996347453" />
-    <state x="522" y="235" width="635" height="550" key="find.popup" timestamp="1600406405687">
-      <screen x="0" y="23" width="1680" height="978" />
-    </state>
-    <state x="522" y="235" width="635" height="550" key="find.popup/0.23.1680.978@0.23.1680.978" timestamp="1600406405687" />
   </component>
 </project>
