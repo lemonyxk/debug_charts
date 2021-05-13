@@ -26,6 +26,8 @@ github.com/lemoyxk/kitty v0.0.0-20200918124950-750d2fb0c96c h1:b7AXPtC2W9/+JY/yj
 github.com/lemoyxk/kitty v0.0.0-20200918124950-750d2fb0c96c/go.mod h1:lnsJNKr0SwO951lDdb7aaq7Ahz9xgygmTyozo5UnDDA=
 github.com/lemoyxk/kitty v0.0.0-20210512151954-bd8bdc2ed561 h1:BS3jDtHM2ZpijmH33eoB6NeJzEx0L3MZZIF+z7eHkp0=
 github.com/lemoyxk/kitty v0.0.0-20210512151954-bd8bdc2ed561/go.mod h1:7ndYG6Y0ogj5gGTpHv7FUvqxp9hDKQBc27IqDFuIjW8=
+github.com/lemoyxk/kitty v0.0.0-20210513023339-bcdd832170ab h1:78rmBtIwpYP9/GAU1BbOploQIFrIyQxnEs3D0O7zg54=
+github.com/lemoyxk/kitty v0.0.0-20210513023339-bcdd832170ab/go.mod h1:7ndYG6Y0ogj5gGTpHv7FUvqxp9hDKQBc27IqDFuIjW8=
 github.com/lemoyxk/structure v0.0.0-20200917174835-81c7c3a2a6f1 h1:djbOUDBjg5JyeiVAtKMT30eG+5ImQxzUFIksrMQPKpU=
 github.com/lemoyxk/structure v0.0.0-20200917174835-81c7c3a2a6f1/go.mod h1:JhfOlK049hEbq4IHMtF9eaPZR0sJHYDUjuuTeckYQZw=
 github.com/lemoyxk/structure v0.0.0-20210303084734-b5c7e6a394c2 h1:N1hihkn9qvtWScNnx9kDjNvTCUVr3NaKneVxTtHPjrU=

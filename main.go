@@ -41,8 +41,8 @@ var (
 	interval        = time.Millisecond * 500
 	ip              = "0.0.0.0"
 	port            = 23456
-	httpServer      = &server.Server{Host: fmt.Sprintf("%s:%d", ip, port)}
-	webSocketServer = &server2.Server{Host: fmt.Sprintf("%s:%d", ip, port+1), Path: "/debug/feed/"}
+	httpServer      = &server.Server{Addr: fmt.Sprintf("%s:%d", ip, port)}
+	webSocketServer = &server2.Server{Addr: fmt.Sprintf("%s:%d", ip, port+1), Path: "/debug/feed/"}
 	lastPause       uint32
 )
 
