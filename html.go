@@ -260,11 +260,12 @@ function ws() {
         }, 3000);
     };
 
-    webSocket.onmessage = msg => {
-        let message = JSON.parse(msg.data);
-        message.data.msg = message.data.msg || [];
-        for (let i = 0; i < message.data.msg.length; i++) {
-            update(message.data.msg[i]);
+	webSocket.onmessage = async (msg) => {
+		var text = await (new Response(msg.data)).text();
+        let message = JSON.parse(text.slice(22));
+        message.msg = message.msg || [];
+        for (let i = 0; i < message.msg.length; i++) {
+            update(message.msg[i]);
         }
     };
 
