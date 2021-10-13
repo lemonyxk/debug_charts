@@ -18,6 +18,7 @@ import (
 	"runtime/pprof"
 	"time"
 
+	"github.com/lemoyxk/kitty"
 	"github.com/lemoyxk/kitty/http"
 	"github.com/lemoyxk/kitty/http/server"
 	"github.com/lemoyxk/kitty/socket"
@@ -42,7 +43,7 @@ var (
 	ip              = "0.0.0.0"
 	port            = 23456
 	httpServer      = &server.Server{Addr: fmt.Sprintf("%s:%d", ip, port)}
-	webSocketServer = &server2.Server{Addr: fmt.Sprintf("%s:%d", ip, port+1), Path: "/debug/feed/"}
+	webSocketServer = &server2.Server{Addr: fmt.Sprintf("%s:%d", ip, port+1)}
 	lastPause       uint32
 )
 
@@ -64,7 +65,7 @@ func MaxCount(n int) {
 
 func Start() {
 
-	var httpServerRouter = &server.Router{IgnoreCase: true}
+	var httpServerRouter = kitty.NewHttpServerRouter()
 
 	httpServer.Use(func(next server.Middle) server.Middle {
 		return func(stream *http.Stream) {
@@ -88,7 +89,7 @@ func Start() {
 
 	fmt.Printf("you can open %s to watch.\n", debugUrl)
 
-	var webSocketServerRouter = &server2.Router{IgnoreCase: true}
+	var webSocketServerRouter = kitty.NewWebSocketServerRouter()
 
 	webSocketServerRouter.Group("/debug").Handler(func(handler *server2.RouteHandler) {
 		handler.Route("/login").Handler(func(conn *server2.Conn, stream *socket.Stream) error {

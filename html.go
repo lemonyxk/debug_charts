@@ -251,7 +251,7 @@ function ws() {
 
     if (window.location.protocol === 'https:') protocol = 'wss';
 
-    let webSocket = new WebSocket(protocol + "://" + window.location.hostname + ":" + window.location.port + "/debug/feed/");
+    let webSocket = new WebSocket(protocol + "://" + window.location.hostname + ":" + window.location.port);
 
     webSocket.onopen = () => {
         webSocket.send(JSON.stringify({"event": "/debug/login"}))

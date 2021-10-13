@@ -11,9 +11,10 @@
 package main
 
 import (
+	"github.com/lemoyxk/debug_charts"
 	_ "github.com/lemoyxk/debug_charts"
 )
 
 func main() {
-
+	debug_charts.Start()
 }
