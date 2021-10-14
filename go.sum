@@ -13,8 +13,8 @@ github.com/json-iterator/go v1.1.12 h1:PV8peI4a0ysnczrg+LtxykD8LfKY9ML6u2jnxaEnr
 github.com/json-iterator/go v1.1.12/go.mod h1:e30LSqwooZae/UwlEbR2852Gd8hjQvJoHmT4TnhNGBo=
 github.com/lemoyxk/caller v0.0.0-20210923041650-ed223e41b72c h1:igVYbVGvFPB2xzlTfxx/4zaEMFN6/ZKOXt5lszaTMnM=
 github.com/lemoyxk/caller v0.0.0-20210923041650-ed223e41b72c/go.mod h1:J+iyY3zK37N8XualW5SB5DZmOgyffgs4P42M1jL9j8s=
-github.com/lemoyxk/kitty v0.0.0-20211012204146-51d740327770 h1:T8bPxHpuYA8wh4byqk1w8sE/4Z85KX5V1b8cS5+71lg=
-github.com/lemoyxk/kitty v0.0.0-20211012204146-51d740327770/go.mod h1:DEN03f+UG/tJJ0XMwA1KmYD+7bH/sfNUCmIkf6L0GTE=
+github.com/lemoyxk/kitty v0.0.0-20211014200301-79ea31bbf515 h1:IGOXv7uxhRhJ+Rqc7HEwfBCRZtvWIv8VaA9v1HOKSXs=
+github.com/lemoyxk/kitty v0.0.0-20211014200301-79ea31bbf515/go.mod h1:DEN03f+UG/tJJ0XMwA1KmYD+7bH/sfNUCmIkf6L0GTE=
 github.com/lemoyxk/structure v0.0.0-20210303084734-b5c7e6a394c2 h1:N1hihkn9qvtWScNnx9kDjNvTCUVr3NaKneVxTtHPjrU=
 github.com/lemoyxk/structure v0.0.0-20210303084734-b5c7e6a394c2/go.mod h1:JhfOlK049hEbq4IHMtF9eaPZR0sJHYDUjuuTeckYQZw=
 github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 h1:ZqeYNhU3OHLH3mGKHDcjJRFFRrJa6eAM5H+CtDdOsPc=

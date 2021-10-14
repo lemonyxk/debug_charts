@@ -2,7 +2,7 @@ module github.com/lemoyxk/debug_charts
 
 go 1.17
 
-require github.com/lemoyxk/kitty v0.0.0-20211012204146-51d740327770
+require github.com/lemoyxk/kitty v0.0.0-20211014200301-79ea31bbf515
 
 require (
 	github.com/golang/protobuf v1.5.2 // indirect

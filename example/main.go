@@ -17,4 +17,6 @@ import (
 
 func main() {
 	debug_charts.Start()
+
+	select {}
 }
