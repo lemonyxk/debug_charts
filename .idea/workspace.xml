@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="73f2695f-11b5-44f0-8959-33531dff264c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/charts/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/example/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,14 +34,20 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="true" />
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/html.go" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/example/main.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/charts/index.html" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/charts/index.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/example/main.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/go.mod" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/go.sum" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/html.go" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/main.go" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="1W1W75Q8G4KPIstXWO0bXqG4ZTG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -46,26 +56,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DefaultGoTemplateProperty" value="Go File" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="go.formatter.settings.were.checked" value="true" />
-    <property name="go.import.settings.migrated" value="true" />
-    <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
-    <property name="go.sdk.automatically.set" value="true" />
-    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="go.vgo" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.go.watchers.conflict.with.on.save.actions.check.performed": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "/Users/lemo"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build github.com/lemoyxk/debug_charts/example">
+  <component name="RunManager" selected="Go Build.go build github.com/lemonyxk/debug_charts/example">
     <configuration name="go build debug-charts" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="debug-charts" />
       <working_directory value="$PROJECT_DIR$" />
@@ -84,6 +94,15 @@
       <filePath value="$PROJECT_DIR$/example/main.go" />
       <method v="2" />
     </configuration>
+    <configuration name="go build github.com/lemonyxk/debug_charts/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="debug-charts" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="github.com/lemonyxk/debug_charts/example" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/example/main.go" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build github.com/lemoyxk/debug_charts/example" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="debug-charts" />
       <working_directory value="$PROJECT_DIR$" />
@@ -95,6 +114,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build github.com/lemonyxk/debug_charts/example" />
         <item itemvalue="Go Build.go build github.com/lemoyxk/debug_charts/example" />
         <item itemvalue="Go Build.go build github.com/Lemo-yxk/debug_charts/example" />
         <item itemvalue="Go Build.go build debug-charts" />
@@ -124,12 +144,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="1.update package." />
   </component>
   <component name="VgoProject">
-    <integration-enabled>true</integration-enabled>
     <environment>
       <map>
         <entry key="GOPROXY" value="https://goproxy.cn" />
       </map>
     </environment>
-    <proxy>direct</proxy>
+    <settings-migrated>true</settings-migrated>
   </component>
 </project>

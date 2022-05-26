@@ -18,11 +18,12 @@ import (
 	"runtime/pprof"
 	"time"
 
-	"github.com/lemoyxk/kitty"
-	"github.com/lemoyxk/kitty/http"
-	"github.com/lemoyxk/kitty/http/server"
-	"github.com/lemoyxk/kitty/socket"
-	server2 "github.com/lemoyxk/kitty/socket/websocket/server"
+	"github.com/lemonyxk/kitty/v2"
+	"github.com/lemonyxk/kitty/v2/router"
+	"github.com/lemonyxk/kitty/v2/socket"
+	"github.com/lemonyxk/kitty/v2/socket/http"
+	"github.com/lemonyxk/kitty/v2/socket/http/server"
+	server2 "github.com/lemonyxk/kitty/v2/socket/websocket/server"
 )
 
 type update struct {
@@ -43,7 +44,7 @@ var (
 	ip              = "0.0.0.0"
 	port            = 23456
 	httpServer      = &server.Server{Addr: fmt.Sprintf("%s:%d", ip, port)}
-	webSocketServer = &server2.Server{Addr: fmt.Sprintf("%s:%d", ip, port+1)}
+	webSocketServer = &server2.Server{Addr: fmt.Sprintf("%s:%d", ip, port+1), Path: "/debug/feed/"}
 	lastPause       uint32
 )
 
@@ -77,7 +78,7 @@ func Start() {
 		}
 	})
 
-	httpServerRouter.Group("/debug").Handler(func(handler *server.RouteHandler) {
+	httpServerRouter.Group("/debug").Handler(func(handler *router.Handler[*http.Stream]) {
 		handler.Get("/charts/").Handler(func(stream *http.Stream) error {
 			return stream.EndString(render())
 		})
@@ -91,14 +92,14 @@ func Start() {
 
 	var webSocketServerRouter = kitty.NewWebSocketServerRouter()
 
-	webSocketServerRouter.Group("/debug").Handler(func(handler *server2.RouteHandler) {
-		handler.Route("/login").Handler(func(conn *server2.Conn, stream *socket.Stream) error {
-			return conn.JsonEmit(socket.JsonPack{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data}})
+	webSocketServerRouter.Group("/debug").Handler(func(handler *router.Handler[*socket.Stream[server2.Conn]]) {
+		handler.Route("/login").Handler(func(stream *socket.Stream[server2.Conn]) error {
+			return stream.Conn.JsonEmit("listen", http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: data})
 		})
 	})
 
-	webSocketServer.OnOpen = func(conn *server2.Conn) {}
-	webSocketServer.OnClose = func(conn *server2.Conn) {}
+	webSocketServer.OnOpen = func(conn server2.Conn) {}
+	webSocketServer.OnClose = func(conn server2.Conn) {}
 	webSocketServer.OnError = func(err error) {}
 
 	go webSocketServer.SetRouter(webSocketServerRouter).Start()
@@ -140,6 +141,6 @@ func gatherData() {
 			data = data[len(data)-maxCount:]
 		}
 
-		webSocketServer.JsonEmitAll(socket.JsonPack{Event: "listen", Data: http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}}})
+		webSocketServer.JsonEmitAll("listen", http.JsonFormat{Status: "SUCCESS", Code: 200, Msg: []update{u}})
 	}
 }

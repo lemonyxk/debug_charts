@@ -11,8 +11,8 @@
 package main
 
 import (
-	"github.com/lemoyxk/debug_charts"
-	_ "github.com/lemoyxk/debug_charts"
+	"github.com/lemonyxk/debug_charts"
+	_ "github.com/lemonyxk/debug_charts"
 )
 
 func main() {
